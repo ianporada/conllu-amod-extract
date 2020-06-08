@@ -22,9 +22,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('input')
     parser.add_argument('output')
+    parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
 
-    if os.path.exists(args.output):
+    if os.path.exists(args.output) and not args.overwrite:
         logger.error('Output file %s already exists', args.output)
         return
 
@@ -95,7 +96,8 @@ def main():
     logger.info('Writing triples to %s', args.output)
     with open(args.output, 'w') as f:
         csv_writer = csv.writer(f, delimiter='\t')
-        csv_writer.writerows(svo_triples)
+        for key, value in svo_triples.items():
+            csv_writer.writerow([*key, value])
 
 
 if __name__ == '__main__':
