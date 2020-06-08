@@ -66,7 +66,6 @@ def main():
                 compounds[head_id] = line
 
         if invalid_sentence:
-            print(sentence)
             continue
 
         for line in verbs:
