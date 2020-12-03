@@ -32,7 +32,7 @@ def main():
                 for i in range(0, len(sent)):
                     line = sent[i]
                     if line[7] == 'amod':
-                        amod = line[2] # get the lemma
+                        amod = line[1] # don't take lemma for amod
                         noun_idx = int(line[6])
                         noun_line = sent[noun_idx]
                         if noun_line[3] == 'NN' or noun_line[3] == 'NOUN':
